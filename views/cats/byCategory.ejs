@@ -1,0 +1,11 @@
+<h3>Here is a list of all the <strong><%= categoryName %></strong> projects:</h3>
+<br>
+
+<ul>
+<% projects.forEach(function(project){ %>
+	<li>
+		<h3><strong><%= project.name %></strong></h3>
+
+	</li>
+<% }); %>
+</ul>

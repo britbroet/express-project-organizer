@@ -9,8 +9,19 @@ router.post('/', function(req, res) {
     githubLink: req.body.githubLink,
     deployedLink: req.body.deployedLink,
     description: req.body.description
-  })
-  .then(function(project) {
+  }).then(function(project) {
+    if(req.body.categories){
+      var categories = req.body.categories.split(",");
+      for (var i = 0; i < categories.length; i++){
+        db.category.findOrCreate({
+          where: {name: categories[i]}
+        }).spread(function(category, wasCreated){
+          if(category){
+            project.addCategory(category);
+          } // end of if category
+        }); // end of spread
+      } // end of for loop
+    } // end of if categories
     res.redirect('/');
   })
   .catch(function(error) {
@@ -36,5 +47,12 @@ router.get('/:id', function(req, res) {
     res.status(400).render('main/404');
   });
 });
+
+
+
+
+
+
+
 
 module.exports = router;

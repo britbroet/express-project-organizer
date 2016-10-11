@@ -8,5 +8,15 @@
       <a href="/projects/<%= project.id %>"><%= project.name %></a>
       <small>by <%= project.name %></small>
     </h2>
+
+	<% project.categories.forEach(function(category){ %>
+		<strong>
+		<a href="/categories/ <%= category.id %>"> 
+		#<%= category.name %>  
+		</a></strong>
+	<%	});	%>
+
   </div>
 <% }); %>
+
+

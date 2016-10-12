@@ -1,9 +1,9 @@
-<h1>Here are all the categories!</h1>
-
+<h2>All Existing Categories</h2>
+<br>
 <ul>
 	<% categories.forEach(function(category) { %>
 		<li>
-			<h3><%= category.name%></h3>
+			<h5><a href="/categories/ <%= category.id %>"> <%= category.name%> </a></h5> 
 		</li>
 	<% }); %>
 </ul>

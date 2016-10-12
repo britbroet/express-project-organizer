@@ -3,6 +3,7 @@ var bodyParser = require('body-parser');
 var ejsLayouts = require('express-ejs-layouts');
 var db = require('./models');
 var app = express();
+var async = require("async");
 
 app.set('view engine', 'ejs');
 app.use(require('morgan')('dev'));

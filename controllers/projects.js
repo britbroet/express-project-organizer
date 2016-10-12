@@ -15,6 +15,15 @@ router.get('/', function(req, res) {
     });
 });
 
+
+// async.series([fn1, fn3, fn2], function(err, results){
+//      //waits for ^ to execute, in order specified, then does this:
+//      console.log("done with all");
+//      console.log(results);
+// });
+
+
+
 // POST /projects - create a new project
 router.post('/', function(req, res) {
   db.project.create({

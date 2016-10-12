@@ -1,21 +1,18 @@
-<h1>Project Organizer</h1>
-
-<h2>My Projects</h2>
-
+<h2>All Projects</h2>
+<br>
 <% projects.forEach(function(project) { %>
-  <div class="well">
+  <div>
     <h2>
       <a href="/projects/<%= project.id %>"><%= project.name %></a>
-      <small>by <%= project.name %></small>
     </h2>
 
-	<% project.categories.forEach(function(category){ %>
-		<strong>
-		<a href="/categories/ <%= category.id %>"> 
-		#<%= category.name %>  
-		</a></strong>
+    <strong>Categories: </strong>
+    <% project.categories.forEach(function(category){ %><a href="/categories/ <%= category.id %>" class="category"><%=category.name%></a></strong>
 	<%	});	%>
+	</strong>
 
+	<div class="lastUpdated">Last Updated: <%= project.updatedAt %></div>
+	<hr>
   </div>
 <% }); %>
 

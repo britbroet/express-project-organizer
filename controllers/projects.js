@@ -2,6 +2,19 @@ var express = require('express');
 var db = require('../models');
 var router = express.Router();
 
+// SETS PROJECTS PAGE TO LIST OF PROJECTS
+router.get('/', function(req, res) {
+  db.project.findAll({
+    include: [db.category],
+    order: [['createdAt', 'DESC']]
+    }).then(function(projects) {
+      res.render('main/index', { projects: projects });
+    })
+    .catch(function(error) {
+      res.status(400).render('main/404');
+    });
+});
+
 // POST /projects - create a new project
 router.post('/', function(req, res) {
   db.project.create({
@@ -22,6 +35,7 @@ router.post('/', function(req, res) {
         }); // end of spread
       } // end of for loop
     } // end of if categories
+  }).then(function() {
     res.redirect('/');
   })
   .catch(function(error) {
@@ -37,6 +51,7 @@ router.get('/new', function(req, res) {
 // GET /projects/:id - display a specific project
 router.get('/:id', function(req, res) {
   db.project.find({
+    include: [db.category],
     where: { id: req.params.id }
   })
   .then(function(project) {
@@ -48,6 +63,20 @@ router.get('/:id', function(req, res) {
   });
 });
 
+
+//DELETE PROJECT
+router.get("/delete/:id", function(req, res){
+  console.log('inside delete route');
+  db.project.destroy({
+    where: { id: req.params.id }
+  }).then(function(){
+    //res.send("Project was destroyed"); 
+    res.redirect("/");
+  }).catch(function(err){
+    console.log(err);
+    res.send("oops, server error");
+  });
+});
 
 
 

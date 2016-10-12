@@ -1,0 +1,35 @@
+/*#singleProjectView h1 {
+	display: inline-block;
+}*/
+
+.category {
+    padding: 0 10px 0 5px;
+    border-right: 1px solid #aaa;
+}
+
+.projectDescription {
+	font-size: 16px;
+	margin-top: 15px;
+}
+
+.projectInfo {
+	margin-top: 25px;
+}
+
+.lastUpdated {
+	color: #aaa;
+	font-size: 12px;
+	margin-top: 10px;
+}
+
+@media (min-width: 768px) {
+    .navbar .navbar-nav {
+        display: inline-block;
+        float: none;
+        vertical-align: top;
+    }
+
+    .navbar .navbar-collapse {
+        text-align: center;
+    }
+}

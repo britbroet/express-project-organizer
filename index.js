@@ -8,11 +8,15 @@ app.set('view engine', 'ejs');
 app.use(require('morgan')('dev'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(ejsLayouts);
+app.use(express.static('public'));
+
+
+//ROUTES
 
 app.get('/', function(req, res) {
   db.project.findAll({
-  	include: [db.category]
-  	// order: [['createdAt', 'DESC']]
+  	include: [db.category],
+  	order: [['createdAt', 'DESC']]
 	  }).then(function(projects) {
 	    res.render('main/index', { projects: projects });
 	  })
